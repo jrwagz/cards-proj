@@ -37,3 +37,41 @@ Home = "https://github.com/okken/cards"
 [project.scripts]
 cards = "cards:app"
 
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-v --strict-markers"
+xfail_strict = 1
+markers = []
+testpaths = [
+    "tests",
+]
+# python path is not useful in this repo because we treat each example as independent
+# pythonpath = .
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+exclude = '(\.eggs|\.git|\.mypy_cache|\.nox|\.tox|.*venv|dist|\.vscode|\.pytype)'
+
+[tool.isort]
+profile = "black"
+py_version = 310
+force_sort_within_sections = true
+skip = ".git,.pytype,.venv"
+
+[tool.coverage.run]
+branch = true
+
+[tool.mypy]
+mypy_path = "src"
+check_untyped_defs = true
+disallow_any_generics = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+no_implicit_reexport = true
