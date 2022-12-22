@@ -1,3 +1,5 @@
+![Tests](https://github.com/jrwagz/cards-proj/actions/workflows/tests.yml/badge.svg)
+
 cards
 =====
 
