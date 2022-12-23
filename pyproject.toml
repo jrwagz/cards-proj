@@ -4,7 +4,8 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "cards"
-authors = [{name = "Brian Okken", email = "brian+pypi@pythontest.com"}]
+authors = [{name = "Brian Okken", email = "brian+pypi@pythontest.com"},
+            {name = "Justin Wagner", email = "jrwagz@gmail.com"}]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
@@ -32,7 +33,7 @@ test = [
 ]
 
 [project.urls]
-Home = "https://github.com/okken/cards"
+Home = "https://github.com/jrwagz/cards-proj"
 
 [project.scripts]
 cards = "cards:app"
@@ -63,7 +64,7 @@ skip = ".git,.pytype,.venv"
 branch = true
 
 [tool.mypy]
-mypy_path = "src"
+mypy_path = "cards"
 check_untyped_defs = true
 disallow_any_generics = true
 ignore_missing_imports = true
