@@ -38,6 +38,7 @@ jobs:
           unique-id-for-comment: ${{ matrix.os }} ${{ matrix.python-version }}
 
       - name: Check the output coverage
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' }}
         run: |
           echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
           echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
