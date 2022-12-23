@@ -40,7 +40,7 @@ cards = "cards:app"
 
 [tool.pytest.ini_options]
 minversion = "7.0"
-addopts = "-v --strict-markers --cov-report html --cov=cards"
+addopts = "-v --strict-markers --cov-report html --cov-report xml:coverage.xml --cov=cards"
 xfail_strict = 1
 markers = []
 testpaths = [
