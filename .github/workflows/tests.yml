@@ -40,7 +40,7 @@ jobs:
       - name: Check the output coverage
         if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' }}
         run: |
-          echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage.cover }}"
+          echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
           echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
           echo "Coverage Outputs - ${{ steps.coverageComment.outputs }}"
 
@@ -52,6 +52,6 @@ jobs:
           gistID: dd54144ccb35a4c156c2195bb23ad5b2
           filename: cards-proj-coverage.json
           label: Coverage
-          message: ${{ steps.coverageComment.outputs.coverage.cover }}
+          message: ${{ steps.coverageComment.outputs.coverage }}
           color: ${{ steps.coverageComment.outputs.color }}
           namedLogo: python
