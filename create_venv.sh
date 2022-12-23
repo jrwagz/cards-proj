@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-python3.10 -m venv .venv
+python3.10 -m venv .venv --prompt cards-proj
 source .venv/bin/activate
 pip3 install --upgrade pip
 

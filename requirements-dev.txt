@@ -1,4 +1,4 @@
 pytest
-click>=8.0.0
+pytest-cov
 black
 tox
