@@ -32,18 +32,32 @@ jobs:
       - name: Publish Coverage Report as comment
         id: coverageComment
         if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' }}
-        uses: MishaKav/pytest-coverage-comment@main
+        uses: MishaKav/pytest-coverage-comment@v1.1.40
         with:
           pytest-xml-coverage-path: ./coverage.xml
           unique-id-for-comment: ${{ matrix.os }} ${{ matrix.python-version }}
 
+      - name: Check the output coverage
+        run: |
+          echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
+          echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
+          echo "Coverage Html - ${{ steps.coverageComment.outputs.coverageHtml }}"
+          echo "Coverage Warnings - ${{ steps.coverageComment.outputs.warnings }}"
+          echo "Coverage Errors - ${{ steps.coverageComment.outputs.errors }}"
+          echo "Coverage Failures - ${{ steps.coverageComment.outputs.failures }}"
+          echo "Coverage Skipped - ${{ steps.coverageComment.outputs.skipped }}"
+          echo "Coverage Tests - ${{ steps.coverageComment.outputs.tests }}"
+          echo "Coverage Time - ${{ steps.coverageComment.outputs.time }}"
+          echo "Not Success Test Info - ${{ steps.coverageComment.outputs.notSuccessTestInfo }}"
+
       - name: Create Coverage Badge
-        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' && github.ref == 'refs/heads/main' }}
         uses: schneegans/dynamic-badges-action@v1.6.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: dd54144ccb35a4c156c2195bb23ad5b2
           filename: cards-proj-coverage.json
           label: Coverage
-          message: ${{ steps.coverageComment.outputs.coverage }}
+          message: ${{ steps.coverageComment.outputs.coverage.cover }}
           color: ${{ steps.coverageComment.outputs.color }}
+          namedLogo: python
