@@ -1,4 +1,5 @@
 ![Tests](https://github.com/jrwagz/cards-proj/actions/workflows/tests.yml/badge.svg)
+![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/jrwagz/dd54144ccb35a4c156c2195bb23ad5b2/raw/cards-proj-coverage.json?style=plastic&logo=python)
 
 cards
 =====

@@ -30,8 +30,28 @@ jobs:
         run: tox
 
       - name: Publish Coverage Report as comment
+        id: coverageComment
         if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' }}
-        uses: MishaKav/pytest-coverage-comment@main
+        uses: MishaKav/pytest-coverage-comment@v1.1.41
         with:
           pytest-xml-coverage-path: ./coverage.xml
           unique-id-for-comment: ${{ matrix.os }} ${{ matrix.python-version }}
+          coverage-path-prefix: cards/
+
+      - name: Check the output coverage
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' }}
+        run: |
+          echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
+          echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
+
+      - name: Create Coverage Badge
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.10' && github.ref == 'refs/heads/main' }}
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: dd54144ccb35a4c156c2195bb23ad5b2
+          filename: cards-proj-coverage.json
+          label: Coverage
+          message: ${{ steps.coverageComment.outputs.coverage }}
+          color: ${{ steps.coverageComment.outputs.color }}
+          namedLogo: python
