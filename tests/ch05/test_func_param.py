@@ -23,3 +23,11 @@ def test_finish_simple(cards_db,start_state):
     cards_db.finish(index)
     card = cards_db.get_card(index)
     assert card.state == 'done'
+
+
+@pytest.mark.parametrize('start_state',[('done'),('in prog'),('todo')])
+def test_start(cards_db, start_state):
+    index = cards_db.add_card(Card("irrelevant summary",state=start_state))
+    cards_db.start(index)
+    card = cards_db.get_card(index)
+    assert card.state == 'in prog'
