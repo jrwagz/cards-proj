@@ -40,16 +40,19 @@ cards = "cards:app"
 
 [tool.pytest.ini_options]
 minversion = "7.0"
-addopts = "-v --strict-markers --cov-report html --cov-report xml:coverage.xml --cov=cards"
+addopts = [
+    "-v",
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "--cov-report=html",
+    "--cov-report=xml:coverage.xml",
+    "--cov=cards",
+]
 xfail_strict = 1
 markers = [
     "smoke: subset of tests",
     "exception: check for expected exceptions​",
-    "finish: all of the 'cards finish' related tests",
-    "num_cards: number of cards to prefill for cards_db fixture, default=0",
-    "odd: Odd numbered tests in ch06 exercise",
-    "testclass: TestClass tests in ch06 exercise",
-    "allch06: all tests in ch06 exercise",
 ]
 testpaths = [
     "tests",
