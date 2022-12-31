@@ -24,11 +24,17 @@ def cards_db(session_cards_db):
     db.delete_all()
     return db
 
+@pytest.fixture(scope="session")
+def example_three_cards():
+    return [
+        Card("foo"),
+        Card("bar", owner="me"),
+        Card("baz", owner="you", state="in prog"),
+    ]
 
 @pytest.fixture(scope="function")
-def cards_db_three_cards(cards_db):
+def cards_db_three_cards(cards_db, example_three_cards):
     """CardsDB with 3 cards"""
-    cards_db.add_card(Card("foo"))
-    cards_db.add_card(Card("bar"))
-    cards_db.add_card(Card("baz"))
+    for c in example_three_cards:
+        cards_db.add_card(c)
     return cards_db

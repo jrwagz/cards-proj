@@ -48,6 +48,7 @@ addopts = [
     "--cov-report=html",
     "--cov-report=xml:coverage.xml",
     "--cov=cards",
+    "--cov=tests",
 ]
 xfail_strict = 1
 markers = [
