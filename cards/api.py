@@ -26,6 +26,7 @@ class Card:
     @classmethod
     def from_dict(cls, d):
         return Card(**d)
+
     def to_dict(self):
         return asdict(self)
 
@@ -69,19 +70,11 @@ class CardsDB:
         """Return a list of cards."""
         all = self._db.read_all()
         if (owner is not None) and (state is not None):
-            return [
-                Card.from_dict(t)
-                for t in all
-                if (t["owner"] == owner and t["state"] == state)
-            ]
+            return [Card.from_dict(t) for t in all if (t["owner"] == owner and t["state"] == state)]
         elif owner is not None:
-            return [
-                Card.from_dict(t) for t in all if t["owner"] == owner
-            ]
+            return [Card.from_dict(t) for t in all if t["owner"] == owner]
         elif state is not None:
-            return [
-                Card.from_dict(t) for t in all if t["state"] == state
-            ]
+            return [Card.from_dict(t) for t in all if t["state"] == state]
         else:
             return [Card.from_dict(t) for t in all]
 
