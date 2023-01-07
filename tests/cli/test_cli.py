@@ -138,4 +138,5 @@ def test_invalid_card_id(cards_db, command):
 
 def test_missing_summary(cards_db):
     out = cards_cli("add")
-    assert "Error: Missing argument 'SUMMARY...'" in out
+    assert "Error" in out
+    assert "Missing argument 'SUMMARY...'" in out
