@@ -1,0 +1,6 @@
+pytest
+faker
+tox
+coverage
+pytest-cov
+black
