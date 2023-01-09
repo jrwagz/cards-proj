@@ -1,11 +1,16 @@
 # sums.py
 # add the numbers in `data.txt`
+import typer
+from typing import Optional
+
+app = typer.Typer()
 
 
-def main():
+@app.command()
+def main(filename: str):
     sum = 0.0
 
-    with open("data.txt", "r") as file:
+    with open(filename, "r") as file:
         for line in file:
             number = float(line)
             sum += number
@@ -14,4 +19,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    app()
