@@ -48,17 +48,31 @@ def list_cards(
     """
     with cards_db() as db:
         the_cards = db.list_cards(owner=owner, state=state)
-        table = Table(box=rich.box.SIMPLE)
-        table.add_column("ID")
-        table.add_column("state")
-        table.add_column("owner")
-        table.add_column("summary")
-        for t in the_cards:
-            owner = "" if t.owner is None else t.owner
-            table.add_row(str(t.id), t.state, owner, t.summary)
-        out = StringIO()
-        rich.print(table, file=out)
-        print(out.getvalue())
+        print_cards_list(the_cards)
+
+
+@app.command("done")
+def list_done_cards():
+    """
+    List 'done' cards in db.
+    """
+    with cards_db() as db:
+        the_cards = db.list_done_cards()
+        print_cards_list(the_cards)
+
+
+def print_cards_list(the_cards):
+    table = Table(box=rich.box.SIMPLE)
+    table.add_column("ID")
+    table.add_column("state")
+    table.add_column("owner")
+    table.add_column("summary")
+    for t in the_cards:
+        owner = "" if t.owner is None else t.owner
+        table.add_row(str(t.id), t.state, owner, t.summary)
+    out = StringIO()
+    rich.print(table, file=out)
+    print(out.getvalue())
 
 
 @app.command()

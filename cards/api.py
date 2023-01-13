@@ -78,6 +78,11 @@ class CardsDB:
         else:
             return [Card.from_dict(t) for t in all]
 
+    def list_done_cards(self):
+        """Return the 'done' cards."""
+        done_cards = self.list_cards(state="done")
+        return done_cards
+
     def count(self) -> int:
         """Return the number of cards in db."""
         return self._db.count()

@@ -20,15 +20,14 @@ def test_add_from_empty(cards_db):
     assert cards_db.get_card(i) == c
 
 
-def test_add_from_nonempty(cards_db_three_cards):
+@pytest.mark.num_cards(3)
+def test_add_from_nonempty(cards_db):
     """
     count should increase by 1 and card retrievable
     """
-    cards_db = cards_db_three_cards
     c = Card(summary="do something")
-    starting_count = cards_db.count()
     i = cards_db.add_card(c)
-    assert cards_db.count() == starting_count + 1
+    assert cards_db.count() == 4
     assert cards_db.get_card(i) == c
 
 
